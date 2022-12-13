@@ -19,8 +19,7 @@ jobs:
     # needs: test
     runs-on: ubuntu-latest
     outputs:
-      script-file: ${{ steps.publish.outputs.script-file }}
-      some-key-name: ${{ steps.publish.outputs.some-key-name }}
+      script-file: ${{ steps.publish.outputs.some-key-name }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -33,8 +32,7 @@ jobs:
         #   # old way of storing value
         #   # run: find dist/assets/*.js -type f -execdir echo '::set-output name=some-key-name::{}' ';'
         #   # new way of storing value
-        # run: find dist/assets/*.js -type f -execdir echo 'some-key-name={}' >> $GITHUB_OUTPUT ';'
-        run: echo 'some-key-name="testing this"' >> $GITHUB_OUTPUT ';'
+        run: find dist/assets/*.js -type f -execdir echo 'some-key-name={}' >> $GITHUB_OUTPUT ';'
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -53,9 +51,7 @@ jobs:
           name: dist-files
       - name: Output contens
         run: ls
-      - name: Output filename - script-file
+      - name: Output filename
         run: echo "${{ needs.build.outputs.script-file }}"
-      - name: Output filename - some-key-name
-        run: echo "${{ needs.build.outputs.some-key-name }}"
       - name: Deploy
         run: echo "Deploying..."

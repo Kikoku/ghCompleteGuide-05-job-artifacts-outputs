@@ -54,8 +54,8 @@ jobs:
       - name: Output contens
         run: ls
       - name: Output filename - script-file
-        run: echo "{{ needs.build.outputs.script-file }}"
+        run: echo "${{ needs.build.outputs.script-file }}"
       - name: Output filename - some-key-name
-        run: echo "{{ needs.build.outputs.some-key-name }}"
+        run: echo "${{ needs.build.outputs.some-key-name }}"
       - name: Deploy
         run: echo "Deploying..."
